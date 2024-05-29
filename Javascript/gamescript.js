@@ -62,16 +62,19 @@ function keyUpHandler(event) {
 }
 
 function update() {
-    if (keyObject[38] && Gumball.Y + Gumball.height >= canvasHeight) { // Up arrow key
-        Gumball.speedY = -15; // Jump
+    if (keyObject[38]) { // Up arrow key
+        Gumball.Y -= 5; // Move up
+    }
+    if (keyObject[40]) { // Down arrow key
+        Gumball.Y += 5; // Move down
     }
 
-    Gumball.speedY += 1; // Gravity
-    Gumball.Y += Gumball.speedY;
-
+    // Ensure Gumball stays within the canvas bounds
+    if (Gumball.Y < 0) {
+        Gumball.Y = 0;
+    }
     if (Gumball.Y + Gumball.height > canvasHeight) {
         Gumball.Y = canvasHeight - Gumball.height;
-        Gumball.speedY = 0;
     }
 
     for (let i = 0; i < numSprites; i++) {
@@ -97,10 +100,13 @@ function draw() {
 }
 
 function isCollision(first, other) {
-    const xMin = Math.max(first.X, other.X);
-    const yMin = Math.max(first.Y, other.Y);
-    const xMax = Math.min(first.X + first.width, other.X + other.width);
-    const yMax = Math.min(first.Y + first.height, other.Y + other.height);
+    // Add padding to hitboxes
+    const padding = 10;
+
+    const xMin = Math.max(first.X + padding, other.X + padding);
+    const yMin = Math.max(first.Y + padding, other.Y + padding);
+    const xMax = Math.min(first.X + first.width - padding, other.X + other.width - padding);
+    const yMax = Math.min(first.Y + first.height - padding, other.Y + other.height - padding);
 
     return xMin < xMax && yMin < yMax;
 }
