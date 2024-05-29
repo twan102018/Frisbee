@@ -3,7 +3,7 @@ const fps = 60;
 const interval = 1000 / fps;
 canvasHeight = 800;
 canvasWidth = 600;
-score = 0;
+let score = 0;
 
 function start() {
     let volgende;
@@ -31,7 +31,7 @@ function init() {
     ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     // Create Gumball sprite
-    Gumball = new Sprite(10, 600, 0, 0, 100, 200, 'image/sprite1.png');
+    Gumball = new Sprite(10, 50, 0, 0, 50, 50, 'image/sprite1.png');
     
     for (let i = 0; i < numSprites; i++) {
         const sprite = new Sprite(
@@ -39,7 +39,7 @@ function init() {
             Math.random() * (canvasHeight - 50),
             -Math.random() * 3 - 2,
             0,
-            50,
+            30,
             50,
             './image/paper.png'
         );
@@ -77,13 +77,16 @@ function update() {
         Gumball.Y = canvasHeight - Gumball.height;
     }
 
-    for (let i = 0; i < numSprites; i++) {
+    for (let i = sprites.length - 1; i >= 0; i--) {
         sprites[i].update();
         if (isCollision(Gumball, sprites[i])) {
-            alert("Game Over! Your score: " + score);
-            document.location.reload();
+            resetGame();
+        }
+        if (sprites[i].X + sprites[i].width < 0) {
+            sprites.splice(i, 1); // Remove sprite if it is out of bounds
         }
     }
+
 
     score++;
 }
@@ -109,4 +112,14 @@ function isCollision(first, other) {
     const yMax = Math.min(first.Y + first.height - padding, other.Y + other.height - padding);
 
     return xMin < xMax && yMin < yMax;
+}
+
+function resetGame() {
+    alert("Game Over! Your score: " + score);
+    score = 0;
+    Gumball.X = 10;
+    Gumball.Y = 50;
+    sprites.forEach(sprite => {
+        sprite.reset();
+    });
 }

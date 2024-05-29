@@ -1,5 +1,5 @@
 const sprites = [];
-const numSprites = 5;
+const numSprites = 20;
 
 class Sprite {
     constructor(posX, posY, speedX, speedY, width, height, url) {
