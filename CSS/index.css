@@ -48,6 +48,7 @@ body{
     letter-spacing: 2px;
     cursor: pointer;
     text-transform: uppercase;
+    width: 15rem;
   }
   
   .glass-button:hover {

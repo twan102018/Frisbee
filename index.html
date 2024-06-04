@@ -14,12 +14,17 @@
     <div class="glass-panel" id="Button">
         <img src="./image/background.png" alt="">
         <h2>Wonderful World Of Gumball Game</h2>
-        <p>Controls: <br> Up Arrow to jump <br> Down Arrow to slide</p>
+        <p>Controls: <br> Up Arrow go up <br> Down Arrow go down</p>
+        <p>Enter your username to be eligible for the leaderboard</p>
+        <input type="text" placeholder="username">
         <div class="glass-toolbar">
-          <button class="glass-button" onclick="init()">Play</button>
+          <button class="glass-button" onclick="init()">Start</button>
+          <button class="glass-button" onclick="showLeaderboard()">Leaderboard</button>
         </div>
       </div>
     </div>
+
+    
     <div id='game' style="display: none;">
         <canvas id='myCanvas'>
             Your browser does not support the canvas element.
