@@ -41,7 +41,7 @@ function init() {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
     // Create Gumball sprite
-    Gumball = new Sprite(10, 50, 0, 0, 50, 50, 'image/sprite1.png');
+    Gumball = new Sprite(00, 50, 0, 0, 50, 50, 'image/sprite1.png');
     
     for (let i = 0; i < numSprites; i++) {
         addSprite();
@@ -112,7 +112,7 @@ function draw() {
     }
 
     ctx.fillStyle = '#000';
-    ctx.fillText("score: " + score, 20, 30);
+    ctx.fillText("Score: " + score, 20, 30);
 }
 
 function isCollision(first, other) {
@@ -130,10 +130,11 @@ function isCollision(first, other) {
 function resetGame() {
     alert("Game Over! Your score: " + score);
     score = 0;
-    Gumball.X = 10;
-    Gumball.Y = 50;
+    Gumball.X = 80;
+    Gumball.Y = 100;
     sprites.forEach(sprite => {
         sprite.reset();
     });
+    
 }
 
