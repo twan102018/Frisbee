@@ -46,7 +46,7 @@ include "../php/connection.php";
             ?>
         </table>
         <div id="buttons">
-            <button class="exit"  onclick="window.location.href='../../'">Back</button>
+            <button class="exit"  onclick="window.location.href='../'">Back</button>
         </div>
     </div>
 </main>
