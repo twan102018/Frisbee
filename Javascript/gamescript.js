@@ -7,6 +7,7 @@ let score = 0;
 let numSprites = 10;
 const maxSprites = 40;
 
+
 function start() {
     let nextFrameTime;
     (function gameloop(timestamp) {
