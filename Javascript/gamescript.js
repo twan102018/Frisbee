@@ -129,6 +129,20 @@ function isCollision(first, other) {
 
 function resetGame() {
     alert("Game Over! Your score: " + score);
+    let username = prompt("Enter your username:");
+    if (username != null) {
+        // Submit score to server
+        let formData = new FormData();
+        formData.append('username', username);
+        formData.append('score', score);
+        fetch('scores.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+    }
     score = 0;
     Gumball.X = 10;
     Gumball.Y = 50;
@@ -136,4 +150,3 @@ function resetGame() {
         sprite.reset();
     });
 }
-
