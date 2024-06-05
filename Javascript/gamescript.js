@@ -135,12 +135,13 @@ function resetGame() {
         let formData = new FormData();
         formData.append('username', username);
         formData.append('score', score);
-        fetch('../php/scores.php', {
+        console.log("Sending data:", username, score); // Debugging line
+        fetch('https://88901.stu.sd-lab.nl/Frisbee/php/scores.php', {
             method: 'POST',
             body: formData
         })
         .then(response => response.text())
-        .then(data => console.log(data))
+        .then(data => console.log("Server response:", data)) // Debugging line
         .catch(error => console.error('Error:', error));
     }
     score = 0;
@@ -150,4 +151,5 @@ function resetGame() {
         sprite.reset();
     });
 }
+
 

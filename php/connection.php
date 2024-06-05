@@ -2,7 +2,7 @@
 // Connection settings
 $servername = "localhost";
 $username = "bjornwrld1";
-$password = "hq8s%S813";
+$password = "lbG_9234r";
 $dbname = "leaderboard_088901";
 
 // Create connection
