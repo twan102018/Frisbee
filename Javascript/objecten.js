@@ -1,5 +1,6 @@
+// objecten.js
+
 const sprites = [];
-const numSprites = 20;
 
 class Sprite {
     constructor(posX, posY, speedX, speedY, width, height, url) {
@@ -21,10 +22,6 @@ class Sprite {
     update() {
         this.X += this.speedX;
         this.Y += this.speedY;
-
-        if (this.X + this.width < 0) {
-            this.reset();
-        }
     }
 
     reset() {

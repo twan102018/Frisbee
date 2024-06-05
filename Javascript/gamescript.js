@@ -4,21 +4,30 @@ const interval = 1000 / fps;
 canvasHeight = 800;
 canvasWidth = 600;
 let score = 0;
+let numSprites = 10;
+const maxSprites = 40;
 
 function start() {
-    let volgende;
+    let nextFrameTime;
     (function gameloop(timestamp) {
-        if (volgende === undefined) {
-            volgende = timestamp;
+        if (nextFrameTime === undefined) {
+            nextFrameTime = timestamp;
         }
-        const verschil = timestamp - volgende;
-        if (verschil > interval) {
-            volgende = timestamp - (verschil % interval);
+        const elapsed = timestamp - nextFrameTime;
+        if (elapsed > interval) {
+            nextFrameTime = timestamp - (elapsed % interval);
             update();
             draw();
         }
         requestAnimationFrame(gameloop);
     })();
+
+    // Increase the number of sprites every 3 seconds
+    setInterval(() => {
+        if (sprites.length < maxSprites) {
+            addSprite();
+        }
+    }, 3000);
 }
 
 function init() {
@@ -30,20 +39,12 @@ function init() {
     canvas.height = canvasHeight;
     ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
     // Create Gumball sprite
     Gumball = new Sprite(10, 50, 0, 0, 50, 50, 'image/sprite1.png');
     
     for (let i = 0; i < numSprites; i++) {
-        const sprite = new Sprite(
-            canvasWidth + Math.random() * canvasWidth,
-            Math.random() * (canvasHeight - 50),
-            -Math.random() * 3 - 2,
-            0,
-            30,
-            50,
-            './image/paper.png'
-        );
-        sprites.push(sprite);
+        addSprite();
     }
 
     keyObject = new Array(255).fill(false);
@@ -51,6 +52,19 @@ function init() {
     document.addEventListener('keyup', keyUpHandler, false);
 
     start();
+}
+
+function addSprite() {
+    const sprite = new Sprite(
+        canvasWidth + Math.random() * canvasWidth,
+        Math.random() * (canvasHeight - 50),
+        -Math.random() * 3 - 2,
+        0,
+        30,
+        50,
+        './image/paper.png'
+    );
+    sprites.push(sprite);
 }
 
 function keyDownHandler(event) {
@@ -87,14 +101,13 @@ function update() {
         }
     }
 
-
     score++;
 }
 
 function draw() {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     Gumball.draw();
-    for (let i = 0; i < numSprites; i++) {
+    for (let i = 0; i < sprites.length; i++) {
         sprites[i].draw();
     }
 
@@ -123,3 +136,4 @@ function resetGame() {
         sprite.reset();
     });
 }
+
