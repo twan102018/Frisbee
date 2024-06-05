@@ -135,7 +135,7 @@ function resetGame() {
         let formData = new FormData();
         formData.append('username', username);
         formData.append('score', score);
-        fetch('scores.php', {
+        fetch('../php/scores.php', {
             method: 'POST',
             body: formData
         })
@@ -149,5 +149,5 @@ function resetGame() {
     sprites.forEach(sprite => {
         sprite.reset();
     });
-    
 }
+

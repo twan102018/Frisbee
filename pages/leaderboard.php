@@ -1,3 +1,7 @@
+<?php 
+include "../php/connection.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +18,6 @@
 </head>
 <body>
 
-<form action="scores.php" method="get"></form>
 <main>
     <div id="header">
         <h1>Ranking</h1>
@@ -23,20 +26,6 @@
         <div class="ribbon"></div>
         <table>
             <?php
-            // Connection settings
-            $servername = "your_servername";
-            $username = "your_username";
-            $password = "your_password";
-            $dbname = "your_database";
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
             // Fetch leaderboard data
             $sql = "SELECT * FROM leaderboard ORDER BY score DESC LIMIT 5";
             $result = $conn->query($sql);
@@ -50,7 +39,7 @@
                     echo "</tr>";
                 }
             } else {
-                echo "0 results";
+                echo "<tr><td colspan='3'>0 results</td></tr>";
             }
 
             $conn->close();
