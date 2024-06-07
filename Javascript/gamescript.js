@@ -96,6 +96,7 @@ function update() {
         sprites[i].update();
         if (isCollision(Gumball, sprites[i])) {
             resetGame();
+            location.reload();
         }
         if (sprites[i].X + sprites[i].width < 0) {
             sprites.splice(i, 1); // Remove sprite if it is out of bounds
@@ -146,8 +147,6 @@ function resetGame() {
         .catch(error => console.error('Error:', error));
     }
     score = 0;
-    Gumball.X = 80;
-    Gumball.Y = 100;
     sprites.forEach(sprite => {
         sprite.reset();
     });
