@@ -42,7 +42,7 @@ function init() {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
     // Create Gumball sprite
-    Gumball = new Sprite(00, 50, 0, 0, 50, 50, 'image/sprite1.png');
+    Gumball = new Sprite(0, 50, 0, 0, 50, 50, 'image/sprite1.png');
     
     for (let i = 0; i < numSprites; i++) {
         addSprite();

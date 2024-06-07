@@ -31,12 +31,14 @@ include "../php/connection.php";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
+                $rank = 1; // Initialize rank counter
                 while($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td class='number'>" . $row['id'] . "</td>";
+                    echo "<td class='number'>" . $rank . "</td>"; // Display rank
                     echo "<td class='name'>" . $row['username'] . "</td>";
                     echo "<td class='points'>" . $row['score'] . "</td>";
                     echo "</tr>";
+                    $rank++; // Increment rank counter
                 }
             } else {
                 echo "<tr><td colspan='3'>0 results</td></tr>";
