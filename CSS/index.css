@@ -1,55 +1,64 @@
-body{
-    background-color: rgb(175, 155, 155);
-    text-align: center;
-}
-#game{
-    width: 100vw;
-    height: 75vw;
-    max-width: 133.33vh;
-    max-height: 100vh;
-    margin: auto;
-    position: absolute;
-    top:0;bottom:0;
-    left:0;right:0;
+body {
+  background-color: rgb(175, 155, 155);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#myCanvas{
-    width: 90%;
-    height: 90%;
-    background-image: url('../image/background.png');
-    background-size: cover;
-    margin: auto;
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    
+#game {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#myCanvas {
+  width: 90%;
+  height: 90%;
+  background-image: url('../image/background.png');
+  background-size: cover;
+  max-width: 133.33vh;
+  max-height: 100vh;
+  border: 1px solid #000;
 }
 
 .glass-panel {
-    color: rgba(255,255,255,0.8);
-    margin: 40px auto;
-    background-color: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    width: 100%;
-    border-radius: 15px;
-    padding: 32px;
-    backdrop-filter: blur(10px);
-  }
-  
-  .glass-button {
-    display: inline-block;
-    padding: 24px 32px;
-    border: 0;
-    border-radius: 15px;
-    background-color: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.1);
-    backdrop-filter: blur(30px);
-    color: rgba(255,255,255,0.8);
-    font-size: 14px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    text-transform: uppercase;
-    width: 15rem;
-  }
+  color: rgba(255,255,255,0.8);
+  margin: 20px;
+  background-color: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  width: calc(100% - 40px);
+  max-width: 600px;
+  border-radius: 15px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+  box-sizing: border-box;
+}
+
+.glass-button {
+  display: inline-block;
+  padding: 24px 32px;
+  border: 0;
+  border-radius: 15px;
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(30px);
+  color: rgba(255,255,255,0.8);
+  font-size: 14px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  width: calc(100% - 30px);
+  max-width: 300px;
+  box-sizing: border-box;
+  margin: 15px;
+}
+
   
   .glass-button:hover {
     background-color: rgba(255,255,255,0.2);

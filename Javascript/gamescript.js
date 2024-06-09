@@ -4,7 +4,7 @@ const interval = 1000 / fps;
 canvasHeight = 800;
 canvasWidth = 600;
 let score = 0;
-let numSprites = 10;
+let numSprites = 20;
 const maxSprites = 40;
 
 
@@ -42,7 +42,7 @@ function init() {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
     // Create Gumball sprite
-    Gumball = new Sprite(0,50, 0, 0, 50, 50, 'image/sprite1.png');
+    Gumball = new Sprite(0, 50, 0, 0, 50, 50, 'image/sprite1.png');
     
     for (let i = 0; i < numSprites; i++) {
         addSprite();
@@ -51,9 +51,51 @@ function init() {
     keyObject = new Array(255).fill(false);
     document.addEventListener('keydown', keyDownHandler, false);
     document.addEventListener('keyup', keyUpHandler, false);
+    
+    // Add touch event listeners
+    canvas.addEventListener('touchstart', touchStartHandler, false);
+    canvas.addEventListener('touchmove', touchMoveHandler, false);
+    canvas.addEventListener('touchend', touchEndHandler, false);
 
     start();
 }
+
+function touchStartHandler(event) {
+    const touch = event.touches[0];
+    if (touch) {
+        handleTouchMove(touch);
+    }
+}
+
+function touchMoveHandler(event) {
+    const touch = event.touches[0];
+    if (touch) {
+        handleTouchMove(touch);
+    }
+    event.preventDefault(); // Prevent scrolling
+}
+
+function touchEndHandler(event) {
+    keyObject[38] = false;
+    keyObject[40] = false;
+}
+
+function handleTouchMove(touch) {
+    const canvasRect = document.getElementById('myCanvas').getBoundingClientRect();
+    const touchY = touch.clientY - canvasRect.top;
+    
+    if (touchY < Gumball.Y) {
+        keyObject[38] = true; // Up
+        keyObject[40] = false; // Down
+    } else if (touchY > Gumball.Y + Gumball.height) {
+        keyObject[38] = false; // Up
+        keyObject[40] = true; // Down
+    } else {
+        keyObject[38] = false; // Up
+        keyObject[40] = false; // Down
+    }
+}
+
 
 function addSprite() {
     const sprite = new Sprite(
