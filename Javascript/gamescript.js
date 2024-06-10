@@ -72,7 +72,7 @@ function touchMoveHandler(event) {
     if (touch) {
         handleTouchMove(touch);
     }
-    event.preventDefault(); // Prevent scrolling
+    event.preventDefault(); // Prevent scrollen
 }
 
 function touchEndHandler(event) {
@@ -119,14 +119,14 @@ function keyUpHandler(event) {
 }
 
 function update() {
-    if (keyObject[38]) { // Up arrow key
-        Gumball.Y -= 5; // Move up
+    if (keyObject[38]) { // Up arrow 
+        Gumball.Y -= 5; // up
     }
-    if (keyObject[40]) { // Down arrow key
-        Gumball.Y += 5; // Move down
+    if (keyObject[40]) { // Down arrow 
+        Gumball.Y += 5; // down
     }
 
-    // Ensure Gumball stays within the canvas bounds
+    // boundries
     if (Gumball.Y < 0) {
         Gumball.Y = 0;
     }
@@ -141,7 +141,7 @@ function update() {
             location.reload();
         }
         if (sprites[i].X + sprites[i].width < 0) {
-            sprites.splice(i, 1); // Remove sprite if it is out of bounds
+            sprites.splice(i, 1); // delete after out bound
         }
     }
 
@@ -160,7 +160,7 @@ function draw() {
 }
 
 function isCollision(first, other) {
-    // Add padding to hitboxes
+    // padding hitboxes
     const padding = 10;
 
     const xMin = Math.max(first.X + padding, other.X + padding);
@@ -175,17 +175,17 @@ function resetGame() {
     alert("Game Over! Your score: " + score);
     let username = prompt("Enter your username:");
     if (username != null) {
-        // Submit score to server
+        // Submit score
         let formData = new FormData();
         formData.append('username', username);
         formData.append('score', score);
-        console.log("Sending data:", username, score); // Debugging line
+        console.log("Sending data:", username, score); // debug
         fetch('https://88901.stu.sd-lab.nl/Frisbee/php/scores.php', {
             method: 'POST',
             body: formData
         })
         .then(response => response.text())
-        .then(data => console.log("Server response:", data)) // Debugging line
+        .then(data => console.log("Server response:", data)) // debug
         .catch(error => console.error('Error:', error));
     }
     score = 0;
