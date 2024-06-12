@@ -1,4 +1,32 @@
-// objecten.js
+let ctx, canvasWidth, canvasHeight;
+const fps = 60;
+const interval = 1000 / fps;
+
+let game = {
+    ctx: undefined,
+    canvasWidth: 600,
+    canvasHeight: 800,
+    fps: 60,
+    interval: undefined,
+    blobvis: 0,
+    numSprites: 20,
+    maxSprites: 120,
+    
+    // Other game properties and methods...
+
+    getScore: function() {
+        return this.blobvis;
+    },
+    
+    setScore: function(value) {
+        // Prevent setting a score lower than 0
+        this.blobvis = Math.max(0, value);
+    },
+    
+    increaseScore: function() {
+        this.blobvis++;
+    }
+};
 
 const sprites = [];
 

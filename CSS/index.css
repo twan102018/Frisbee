@@ -22,7 +22,7 @@ body {
   height: 90%;
   background-image: url('../image/background.png');
   background-size: cover;
-  max-width: 133.33vh;
+  max-width: 100vw;
   max-height: 100vh;
   border: 1px solid #000;
 }

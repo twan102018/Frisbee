@@ -1,13 +1,3 @@
-let ctx, canvasWidth, canvasHeight;
-const fps = 60;
-const interval = 1000 / fps;
-canvasHeight = 800;
-canvasWidth = 600;
-let score = 0;
-let numSprites = 10;
-const maxSprites = 40;
-
-
 function start() {
     let nextFrameTime;
     (function gameloop(timestamp) {
@@ -25,7 +15,7 @@ function start() {
 
     // Increase the number of sprites every 3 seconds
     setInterval(() => {
-        if (sprites.length < maxSprites) {
+        if (sprites.length < game.maxSprites) {
             addSprite();
         }
     }, 3000);
@@ -36,15 +26,15 @@ function init() {
     document.getElementById("game").style.display = "block";
     // Initialize canvas
     const canvas = document.getElementById('myCanvas');
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+    canvas.width = game.canvasWidth;
+    canvas.height = game.canvasHeight;
     ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    ctx.clearRect(0, 0, game.canvasWidth, game.canvasHeight);
 
     // Create Gumball sprite
     Gumball = new Sprite(0, 50, 0, 0, 50, 50, 'image/sprite1.png');
     
-    for (let i = 0; i < numSprites; i++) {
+    for (let i = 0; i < game.numSprites; i++) {
         addSprite();
     }
 
@@ -99,8 +89,8 @@ function handleTouchMove(touch) {
 
 function addSprite() {
     const sprite = new Sprite(
-        canvasWidth + Math.random() * canvasWidth,
-        Math.random() * (canvasHeight - 50),
+        game.canvasWidth + Math.random() * game.canvasWidth,
+        Math.random() * (game.canvasHeight - 50),
         -Math.random() * 3 - 2,
         0,
         30,
@@ -130,8 +120,8 @@ function update() {
     if (Gumball.Y < 0) {
         Gumball.Y = 0;
     }
-    if (Gumball.Y + Gumball.height > canvasHeight) {
-        Gumball.Y = canvasHeight - Gumball.height;
+    if (Gumball.Y + Gumball.height > game.canvasHeight) {
+        Gumball.Y = game.canvasHeight - Gumball.height;
     }
 
     for (let i = sprites.length - 1; i >= 0; i--) {
@@ -142,24 +132,24 @@ function update() {
         }
         if (sprites[i].X + sprites[i].width < 0) {
             // Respawn the sprite
-            sprites[i].X = canvasWidth + Math.random() * canvasWidth;
-            sprites[i].Y = Math.random() * (canvasHeight - 50);
+            sprites[i].X = game.canvasWidth + Math.random() * game.canvasWidth;
+            sprites[i].Y = Math.random() * (game.canvasHeight - 50);
         }
     }
 
-    score++;
+    game.increaseScore();
 }
 
 
 function draw() {
-    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    ctx.clearRect(0, 0, game.canvasWidth, game.canvasHeight);
     Gumball.draw();
     for (let i = 0; i < sprites.length; i++) {
         sprites[i].draw();
     }
 
     ctx.fillStyle = '#000';
-    ctx.fillText("Score: " + score, 20, 30);
+    ctx.fillText("Score: " + game.getScore(), 20, 30);
 }
 
 function isCollision(first, other) {
@@ -175,14 +165,14 @@ function isCollision(first, other) {
 }
 
 function resetGame() {
-    alert("Game Over! Your score: " + score);
+    alert("Game Over! Your score: " + game.getScore());
     let username = prompt("Enter your username:");
     if (username != null) {
         // Submit score
         let formData = new FormData();
         formData.append('username', username);
-        formData.append('score', score);
-        console.log("Sending data:", username, score); // debug
+        formData.append('score', game.getScore());
+        console.log("Sending data:", username, game.getScore()); // debug
         fetch('https://88901.stu.sd-lab.nl/Frisbee/php/scores.php', {
             method: 'POST',
             body: formData
@@ -191,7 +181,7 @@ function resetGame() {
         .then(data => console.log("Server response:", data)) // debug
         .catch(error => console.error('Error:', error));
     }
-    score = 0;
+    game.blobvis = 0;
     sprites.forEach(sprite => {
         sprite.reset();
     });
