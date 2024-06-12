@@ -4,7 +4,7 @@ const interval = 1000 / fps;
 canvasHeight = 800;
 canvasWidth = 600;
 let score = 0;
-let numSprites = 20;
+let numSprites = 10;
 const maxSprites = 40;
 
 
@@ -141,12 +141,15 @@ function update() {
             location.reload();
         }
         if (sprites[i].X + sprites[i].width < 0) {
-            sprites.splice(i, 1); // delete after out bound
+            // Respawn the sprite
+            sprites[i].X = canvasWidth + Math.random() * canvasWidth;
+            sprites[i].Y = Math.random() * (canvasHeight - 50);
         }
     }
 
     score++;
 }
+
 
 function draw() {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
