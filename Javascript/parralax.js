@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         draw() {
-            cty.drawImage(this.image, this.x, this.y, this.width, this.height);
-            cty.drawImage(this.image, this.x2, this.y, this.width, this.height);
+            cty.drawImage(this.image, this.x, this.y);
+            cty.drawImage(this.image, this.x2, this.y);
         }
         
         update() {
