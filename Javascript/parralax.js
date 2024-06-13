@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const canvas = document.getElementById('myCanvas');
-    ctx = canvas.getContext('2d'); // Use the globally defined ctx
+    const canvas = document.getElementById('myBackgroundCanvas');
+    cty = canvas.getContext('2d'); // Use the globally defined ctx
 
     const sandBottom = new Image();
     sandBottom.src = './image/parralax/sandbottom.png';
@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         draw() {
-            ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-            ctx.drawImage(this.image, this.x2, this.y, this.width, this.height);
+            cty.drawImage(this.image, this.x, this.y, this.width, this.height);
+            cty.drawImage(this.image, this.x2, this.y, this.width, this.height);
         }
         
         update() {
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sunsetLayer = new Layer(sunset, 1.8, 0);
 
     function animate() {
-        // ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+        cty.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
         sunsetLayer.update();
         sunsetLayer.draw();
         sandWaveLayer.update();

@@ -17,12 +17,22 @@ body {
   align-items: center;
 }
 
-#myCanvas {
+#myCanvas,
+#myBackgroundCanvas {
   width: 90%;
   height: 90%;
   max-width: 100vw;
   max-height: 100vh;
   border: 1px solid #000;
+  position: absolute;
+  left: 0;
+}
+
+#myCanvas {
+  z-index: 2;
+}
+#myBackgroundCanvas {
+  z-index: 1;
 }
 
 .glass-panel {

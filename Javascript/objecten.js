@@ -1,9 +1,10 @@
-let ctx, canvasWidth, canvasHeight;
+let ctx, cty, canvasWidth, canvasHeight;
 const fps = 60;
 const interval = 1000 / fps;
 
 let game = {
     ctx: undefined,
+    cty: undefined,
     canvasWidth: 600,
     canvasHeight: 800,
     fps: 60,
