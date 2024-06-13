@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cty = canvas.getContext('2d'); // Use the globally defined ctx
 
     const sandBottom = new Image();
-    sandBottom.src = './image/parralax/sandbottom.png';
+    sandBottom.src = './image/parralax/Sandbottom2.png';
     
     const sandWave = new Image();
     sandWave.src = './image/parralax/SandWave.png';
@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    const sandBottomLayer = new Layer(sandBottom, movSpeed, 550);
-    const sandWaveLayer = new Layer(sandWave, 1, 620);
+    const sandBottomLayer = new Layer(sandBottom, movSpeed, 0);
+    const sandWaveLayer = new Layer(sandWave, 1, 0);
     const sunsetLayer = new Layer(sunset, 1.8, 0);
 
     function animate() {

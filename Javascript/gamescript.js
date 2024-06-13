@@ -148,7 +148,7 @@ function draw() {
         sprites[i].draw();
     }
 
-    ctx.fillStyle = '#000';
+    ctx.fillStyle = 'white';
     ctx.fillText("Score: " + game.getScore(), 20, 30);
 }
 
