@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'TheTreeBehind1', speed: 1, y: 0, width: window.innerWidth, height: 650 },
         { id: 'HugeTree', speed: 1.5, y: -30, width: window.innerWidth, height: 650 },
         { id: 'Grass', speed: 2, y: 420, width: window.innerWidth, height: 200 },
-        { id: 'Ground', speed: 2.5, y: 400, width: window.innerWidth, height: 500 }
+        { id: 'Ground', speed: 2.5, y: 390, width: window.innerWidth, height: 520 }
     ];    
 
     
