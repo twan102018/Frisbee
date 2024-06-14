@@ -1,34 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('myBackgroundCanvas');
-    cty = canvas.getContext('2d'); // Use the globally defined ctx
+    const cty = canvas.getContext('2d');
 
-    const sandBottom = new Image();
-    sandBottom.src = './image/parralax/Sandbottom2.png';
-    
-    const sandWave = new Image();
-    sandWave.src = './image/parralax/SandWave.png';
-    
-    const sunset = new Image();
-    sunset.src = './image/parralax/sunset.png';
-    
-    let movSpeed = 5;
+    const images = [
+        { id: 'TheTreeBehind2', speed: 0.5, y: 0, width: window.innerWidth, height: 600 },
+        { id: 'TheTreeBehind1', speed: 1, y: 20, width: window.innerWidth, height: 600 },
+        { id: 'HugeTree', speed: 1.5, y: 0, width: window.innerWidth, height: 600 },
+        { id: 'Grass', speed: 2, y: 160, width: window.innerWidth, height: 100 },
+        { id: 'Ground', speed: 2.5, y: 160, width: window.innerWidth, height: 100 }
+    ];    
 
     class Layer {
-        constructor(image, movSpeed, y_Position) {
-            this.x = 0;
-            this.y = y_Position;
-            this.width = 600;
-            this.height = 800;
-            this.x2 = this.width;
+        constructor(image, movSpeed, y_Position, width, height) {
             this.image = image;
             this.speedModifier = movSpeed;
+            this.y = y_Position;
+            this.width = width;
+            this.height = height;
+            this.x = 0;
+            this.x2 = this.width;
         }
-        
+
         draw() {
-            cty.drawImage(this.image, this.x, this.y);
-            cty.drawImage(this.image, this.x2, this.y);
+            cty.drawImage(this.image, this.x, this.y, this.width, this.height);
+            cty.drawImage(this.image, this.x2, this.y, this.width, this.height);
         }
-        
+
         update() {
             if (this.x <= -this.width) {
                 this.x = this.width + this.x2 - this.speedModifier;
@@ -43,21 +40,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    const sandBottomLayer = new Layer(sandBottom, movSpeed, 0);
-    const sandWaveLayer = new Layer(sandWave, 1, 0);
-    const sunsetLayer = new Layer(sunset, 1.8, 0);
+    const layers = images.map(({ id, speed, y, width, height }) => 
+        new Layer(document.getElementById(id), speed, y, width, height)
+    );
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
 
     function animate() {
-        cty.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-        sunsetLayer.update();
-        sunsetLayer.draw();
-        sandWaveLayer.update();
-        sandWaveLayer.draw();
-        sandBottomLayer.update();
-        sandBottomLayer.draw();
-        
+        cty.clearRect(0, 0, canvas.width, canvas.height);
+        layers.forEach(layer => {
+            layer.update();
+            layer.draw();
+        });
         requestAnimationFrame(animate);
     }
 
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
     animate();
 });
