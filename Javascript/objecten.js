@@ -10,8 +10,8 @@ let game = {
     fps: 60,
     interval: undefined,
     blobvis: 0,
-    numSprites: 20,
-    maxSprites: 120,
+    numSprites: 0,
+    maxSprites: 0,
     
     // Other game properties and methods...
 

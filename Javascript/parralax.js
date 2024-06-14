@@ -3,13 +3,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const cty = canvas.getContext('2d');
 
     const images = [
-        { id: 'TheTreeBehind2', speed: 0.5, y: 0, width: window.innerWidth, height: 600 },
-        { id: 'TheTreeBehind1', speed: 1, y: 20, width: window.innerWidth, height: 600 },
-        { id: 'HugeTree', speed: 1.5, y: 0, width: window.innerWidth, height: 600 },
-        { id: 'Grass', speed: 2, y: 160, width: window.innerWidth, height: 100 },
-        { id: 'Ground', speed: 2.5, y: 160, width: window.innerWidth, height: 100 }
+        { id: 'TheTreeBehind2', speed: 0.5, y: 0, width: window.innerWidth, height: 650 },
+        { id: 'TheTreeBehind1', speed: 1, y: 0, width: window.innerWidth, height: 650 },
+        { id: 'HugeTree', speed: 1.5, y: -30, width: window.innerWidth, height: 650 },
+        { id: 'Grass', speed: 2, y: 420, width: window.innerWidth, height: 200 },
+        { id: 'Ground', speed: 2.5, y: 400, width: window.innerWidth, height: 500 }
     ];    
 
+    
     class Layer {
         constructor(image, movSpeed, y_Position, width, height) {
             this.image = image;
