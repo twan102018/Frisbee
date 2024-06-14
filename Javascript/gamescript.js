@@ -93,7 +93,7 @@ function addSprite() {
         Math.random() * (game.canvasHeight - 50),
         -Math.random() * 3 - 2,
         0,
-        30,
+        20,
         50,
         './image/paper.png'
     );
@@ -154,7 +154,7 @@ function draw() {
 
 function isCollision(first, other) {
     // padding hitboxes
-    const padding = 10;
+    const padding = 7;
 
     const xMin = Math.max(first.X + padding, other.X + padding);
     const yMin = Math.max(first.Y + padding, other.Y + padding);
