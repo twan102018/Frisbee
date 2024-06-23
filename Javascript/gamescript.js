@@ -93,8 +93,8 @@ function addSprite() {
         Math.random() * (game.canvasHeight - 50),
         -Math.random() * 3 - 2,
         0,
-        20,
-        50,
+        25,
+        25,
         './image/paper.png'
     );
     sprites.push(sprite);

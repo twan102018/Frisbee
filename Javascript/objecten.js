@@ -32,34 +32,35 @@ let game = {
 const sprites = [];
 
 class Sprite {
-    constructor(posX, posY, speedX, speedY, width, height, url) {
-        this.X = posX;
-        this.Y = posY;
-        this.speedX = speedX;
-        this.speedY = speedY;
+    constructor(x, y, dx, dy, width, height, imageSrc) {
+        this.X = x;
+        this.Y = y;
+        this.dx = dx;
+        this.dy = dy;
         this.width = width;
         this.height = height;
-        this.url = url;
         this.image = new Image();
-        this.alive = true;
-
-        if (url) {
-            this.image.src = url;
-        }
+        this.image.src = imageSrc;
+        this.rotation = 0; // Add this line
     }
 
     update() {
-        this.X += this.speedX;
-        this.Y += this.speedY;
-    }
-
-    reset() {
-        this.X = canvasWidth;
-        this.Y = Math.random() * (canvasHeight - this.height);
-        this.speedX = -Math.random() * 3 - 2; // Random speed to the left
+        this.X += this.dx;
+        this.Y += this.dy;
+        this.rotation += 0.1; // Increment rotation
     }
 
     draw() {
-        ctx.drawImage(this.image, this.X, this.Y, this.width, this.height);
+        ctx.save();
+        ctx.translate(this.X + this.width / 2, this.Y + this.height / 2);
+        ctx.rotate(this.rotation);
+        ctx.drawImage(this.image, -this.width / 2, -this.height / 2, this.width, this.height);
+        ctx.restore();
+    }
+
+    reset() {
+        this.X = game.canvasWidth + Math.random() * game.canvasWidth;
+        this.Y = Math.random() * (game.canvasHeight - 50);
+        this.rotation = 0; // Reset rotation
     }
 }
