@@ -163,7 +163,7 @@
     text-transform: uppercase;
     color: #7e7f86;
     border: 0;
-    background-color: #fff;
+    background-color: #bababa9b;
     border-radius: 2rem;
     cursor: pointer;
   }
@@ -171,7 +171,7 @@
   .exit:hover {
     width: 11.2rem;
     height: 3.1rem;
-    background-color: #bababa9b;
+    background-color: #4949499b;
     transition: 1s;
   }
   
